@@ -1,0 +1,14 @@
+--- x.c	2021-01-12 03:24:27.313995808 +0530
++++ x.c	2021-01-12 03:08:40.850694072 +0530
+@@ -1448,6 +1448,11 @@ xdrawglyphfontspecs(const XftGlyphFontSp
+ 
+ 	if (base.mode & ATTR_INVISIBLE)
+ 		fg = bg;
++
++	// gradient
++	bg->color.alpha = grad_alpha * 0xffff * (win.h - y*win.ch) / win.h + stat_alpha * 0xffff;
++	// uncomment to invert the gradient
++	// bg->color.alpha = grad_alpha * 0xffff * (y*win.ch) / win.h + stat_alpha * 0xffff;
+ 
+ 	/* Intelligent cleaning up of the borders. */
+ 	if (x == 0) {
